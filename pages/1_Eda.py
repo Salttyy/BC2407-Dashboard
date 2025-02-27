@@ -1,17 +1,16 @@
 import streamlit as st
-import pandas as pd
-import numpy as np 
+import numpy as np
 import plotly.express as px
+import pandas as pd
 
-st.markdown(f"# BC2407 Project Dashboard")
 df = pd.read_csv("telecom_churn.csv")
 
-st.markdown("### Telecom churn data")
-st.dataframe(df)
+st.markdown ("## Exploratory Data Analysis")
+st.markdown("### Summary of Telecom churn data")
 
-st.markdown ("### Exploratory Data Analysis")
+st.dataframe(df.describe())
 
-color = px.colors.qualitative.Dark24
+color = px.colors.qualitative.Dark24    
 
 df["Churn"] = df["Churn"].astype(str);
 
@@ -22,9 +21,9 @@ fig1 = px.box(df,
               title="Account Weeks vs Churn",
               color_discrete_sequence=color)
 
-fig1.update_xaxes(title_text="")  # Remove x-axis title
-fig1.update_xaxes(showticklabels=False)  # Remove x-axis text
-fig1.update_xaxes(showgrid=False)  # Remove x-axis ticks
+fig1.update_xaxes(title_text="")  
+fig1.update_xaxes(showticklabels=False) 
+fig1.update_xaxes(showgrid=False)  
 
 st.plotly_chart(fig1)
 
