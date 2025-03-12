@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 import plotly.express as px
 import pandas as pd
-import seaborn as sb
+# import seaborn as sb
 
 df = pd.read_csv("telecom_churn.csv")
 numeric_df = pd.read_csv("telecom_churn.csv")
