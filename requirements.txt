@@ -3,3 +3,5 @@ pandas
 seaborn
 imbalanced-learn
 joblib
+xgboost
+openai
