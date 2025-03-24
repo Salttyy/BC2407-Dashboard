@@ -17,8 +17,8 @@ st.markdown("## Overall Statistic")
 
 # preprocess data 
 
-df["Churn"] = df["Churn"].map({0:"Continued Service",1:"Canceled Service"})
-df["ContractRenewal"] = df["ContractRenewal"].map({0:"No Recent Renewal",1:"Recent Renewal"})
+df["Churn"] = df["Churn"].map({0:"Did not Churn",1:"Churn"})
+df["ContractRenewal"] = df["ContractRenewal"].map({0:"Did Not Renew Contract",1:"Renewed Contract"})
 df["DataPlan"] = df["DataPlan"].map({0:"No Data Plan",1:"Has Data Plan"})
 
 st.markdown("### Distribution of data and Churn")
@@ -72,7 +72,7 @@ fig_chvcr_percent = px.bar(
     color="Churn", 
     text=grouped["Percentage"].round(1).astype(str) + "%",  # Display percentage labels
     opacity = 0.75,
-    category_orders={"ContractRenewal": ["Recent Renewal", "No Recent Renewal"],"Churn":["Continued Service","Canceled Service"]}
+    category_orders={"ContractRenewal": ["Renewed Contract", "Did Not Renew Contract"],"Churn":["Did not Churn","Churn"]}
 )
 
 c1 = st.selectbox("Please select desire graph",("Normal","Percentage"), index = 0,key="1")
@@ -95,7 +95,7 @@ fig_chvcustcall_percent = px.bar(
     color="Churn", 
     text=grouped2["Percentage"].round(1).astype(str) + "%",  # Display percentage labels
     opacity = 0.75,
-    category_orders={"Churn":["Continued Service","Canceled Service"]}
+    category_orders={"Churn":["Did not Churn","Churn"]}
 )
 
 c2 = st.selectbox("Please select desire graph",("Normal","Percentage"), index = 0, key="2")
