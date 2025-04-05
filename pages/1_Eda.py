@@ -103,7 +103,15 @@ st.plotly_chart(fig_chvcustcall if c2 == "Normal" else fig_chvcustcall_percent)
 
 st.markdown("Similar to `Contract Renewal`, an increase in `Customer Service Calls` (CustServCalls) is associated with a higher likelihood of service cancellation. However, this relationship may also suggest that customers who eventually cancel the service are more likely to have contacted customer support multiple times before making their decision. At the same time, the higher **likelihood of cancellation** might also be linked to a **lower proportion** of customers making frequent service calls, meaning that while dissatisfied customers tend to call more, the overall number of such customers remains relatively small. ")
 
-st.markdown("#### 3.Churn vs DayMin")
+st.markdown("#### 3. Churn vs DayMin")
+
+fig_fix = px.histogram(df,"DayMins",color = "Churn",opacity = 0.75)
+
+st.plotly_chart(fig_fix)
+
+st.markdown("Based on the graph, we observe that the distribution of `DayMins` for customers with **Continued Service** follows a nearly normal distribution. In contrast, the distribution for customers with **Canceled Service** appears bimodal, suggesting two distinct usage patterns. Statistically, there is no **direct correlation** between these two distributions, meaning that the difference in shape is not necessarily indicative of a direct relationship between Churn and Non-Churn. Instead, the observed correlation may stem from an imbalance in the dataset or underlying factors influencing churn behavior.")
+
+st.markdown("#### 4.Churn vs DayUsage")
 
 fig_chvdm = px.histogram(df,"DataUsage",color = "DataPlan",opacity = 0.75)
 
@@ -111,7 +119,7 @@ st.plotly_chart(fig_chvdm)
 
 st.markdown("From the graph, we observe that customers **without a data plan** mostly use between 0 and 0.5 units of data, whereas those **with a data plan** tend to use significantly more, typically between 1 and 5 units. Additionally, the distribution appears to be separated into two distinct components, which may indicate a strong dependency between Data Plan and Data Usage. This separation could lead to **multicollinearity** in predictive models, as the presence of a data plan almost directly determines the range of data usage, making these two variables highly correlated.")
  
-st.markdown("#### 4.Monthly Charge vs Data Usage (Data Plan)")
+st.markdown("#### 5.Monthly Charge vs Data Usage (Data Plan)")
 st.markdown("Since `Dataplan` and `DataUsage` has high correlation and should similar result, we decided analyze `DataUsage` and seperate data using `DataPlan`")
 
 fig_mcvsdu = px.scatter(df,y = "DataUsage",x = "MonthlyCharge", color = "DataPlan", opacity = 0.75)
@@ -120,7 +128,7 @@ st.plotly_chart(fig_mcvsdu)
 
 st.markdown("As illustrated in the graph, the data is separated into two clusters based on the `Data Plan.`\nFor customers **without a data plan**, data usage remains low regardless of an increase in monthly charges. This suggests that monthly charges account for other telecom features beyond data usage, such as call or SMS plans.\n On the other hand, for customers **with a data plan**, data usage increases as monthly charges rise, implying that higher monthly charges may correspond to more extensive data plans. This distinction highlights a key relationship between data plans and pricing structure, reinforcing that monthly charges influence data usage differently depending on the presence of a data plan")
 
-st.markdown("#### 5.Monthly Charge vs DayMins")
+st.markdown("#### 6.Monthly Charge vs DayMins")
 
 fig_mcvdm = px.scatter(df,y = "DayMins",x = "MonthlyCharge",color = "DataPlan", opacity = 0.75)
 
